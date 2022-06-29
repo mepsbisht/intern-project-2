@@ -1,0 +1,24 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Radon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manasvi-Sharma29/Project.git"
+  },
+  "author": "group 35",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Manasvi-Sharma29/Project/issues"
+  },
+  "homepage": "https://github.com/Manasvi-Sharma29/Project#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.1",
+    "nodemon": "^2.0.18"
+  }
+}
