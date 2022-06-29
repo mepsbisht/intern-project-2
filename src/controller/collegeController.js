@@ -68,7 +68,7 @@ const getCollegeDetails=async function(req,res){
     try{
         const data=req.query
         // to check the input data in query
-        if(!data) {
+        if(Object.keys(data)==0) {
             return res.status(400).send({
                 status:false,
                 msg:'Please enter the college name in query'
@@ -97,9 +97,15 @@ const getCollegeDetails=async function(req,res){
                 msg:'No intern is presnt in the college'
             })
         }
-        const foundDetails= {...collegedetails.toObject(),interns:internDetails}
+        
+        const result={
+            name:collegedetails.name,
+            fullName:collegedetails.fullName,
+            logoLink:collegedetails.logoLink,
+            interns:internDetails
+        };
         return res.status(200).send({
-            data:foundDetails
+            data:result
         })
         
     }catch(err){
