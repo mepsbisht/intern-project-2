@@ -8,7 +8,7 @@ const collegeSchema= new mongoose.Schema({
         unique:true,
         trim:true
     },
-    fullname:{
+    fullName:{
         type:String,
         required:'Please enter fullname '
     },
@@ -21,6 +21,6 @@ const collegeSchema= new mongoose.Schema({
         default:false
     }
 
-},{timestamps:true});
+});
 
 module.exports=mongoose.model('College',collegeSchema)

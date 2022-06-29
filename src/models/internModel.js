@@ -16,7 +16,7 @@ const internSchema= new mongoose.Schema({
         trim:true,
     },
     mobile:{
-        number:Number,
+        type:Number,
         unique:true,
         required:'Please enter mobile number',
         trim:true
@@ -31,4 +31,5 @@ const internSchema= new mongoose.Schema({
     }
 },{timestamps:true});
 
-module.exports=mongoose.Model('Intern',internSchema)
+
+module.exports=new mongoose.model('Intern',internSchema)
