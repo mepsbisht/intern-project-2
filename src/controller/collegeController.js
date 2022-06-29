@@ -90,7 +90,7 @@ const getCollegeDetails=async function(req,res){
             })
         }
         // to get the details of intern present in that college
-        const internDetails=await InternModel.find({collegeId:collegedetails._id}).select({_id:1,name:1,email:1,mobile:1})
+        const internDetails=await InternModel.find({collegeId:collegedetails._id, isDeleted:false}).select({_id:1,name:1,email:1,mobile:1})
         if(!internDetails){
             return res.status(400).send({
                 status:false,
