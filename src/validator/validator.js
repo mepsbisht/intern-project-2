@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const validator=require('validator')
-const ObjectId=mongoose.Types.ObjectId()
+const validator = require('validator')
+const ObjectId = mongoose.Types.ObjectId()
 
 
 const isValidRequestBody = function (value) {
@@ -9,44 +9,58 @@ const isValidRequestBody = function (value) {
 
 const isValid = function (value) {
     if (typeof value === 'undefined' || value === 'null') return false
-    if(typeof value === 'string'&& value.trim().length === 0) return false
+    if (typeof value === 'string' && value.trim().length === 0) return false
     return true
 }
 
-const isValidObjectId=function(collegeId){
+const isValidObjectId = function (collegeId) {
     return ObjectId.isValid(collegeId)
 }
 
-const isValidUrl=function(value){
+const isValidUrl = function (value) {
     let checkUrl = /^(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/g
-    if(checkUrl.test(value)){
+    if (checkUrl.test(value)) {
         return true;
     }
     return false;
 }
 
-const isValidEmail= function(email){
-    let checkemail=/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/
-    if(checkemail.test(email)){
-        return true;
-    }
-     return false;
-}
-
-const isValidMobileNumber=function(mobile){
-    let checkMobile= /^(\+\d{1,3}[- ]?)?\d{10}$/
-    if(checkMobile.test(mobile)){
+const isValidEmail = function (email) {
+    let checkemail = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/
+    if (checkemail.test(email)) {
         return true;
     }
     return false;
 }
 
-const isValidCase=function(value){
-    if (value.toLowerCase()===value){
+const isValidMobileNumber = function (mobile) {
+    let checkMobile = /^(\+\d{1,3}[- ]?)?\d{10}$/
+    if (checkMobile.test(mobile)) {
         return true;
-    }   
+    }
     return false;
 }
 
+const isValidCase = function (value) {
+    value = value.toLowerCase()
+    return value
+}
 
-module.exports={isValid,isValidEmail,isValidMobileNumber,isValidObjectId,isValidRequestBody,isValidUrl,isValidCase}
+const isValidImageUrl = function (value) {
+    let regex = /^https?:\/\/.\/.\.(png|gif|webp|jpeg|jpg)\??.*$/gmi
+    if (regex.test(value)) {
+        return true;
+    }
+    return false
+}
+
+module.exports = {
+    isValid,
+    isValidEmail,
+    isValidMobileNumber,
+    isValidObjectId,
+    isValidRequestBody,
+    isValidUrl,
+    isValidCase,
+    isValidImageUrl
+}

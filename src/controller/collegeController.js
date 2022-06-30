@@ -45,6 +45,21 @@ const createCollege = async function (req, res) {
                 msg:"Please enter valid logo link"
             })
         }
+        // tto check the valid image url 
+        if(!Validator.isValidImageUrl(logoLink)){
+            return res.status(400).send({
+                status:false,
+                msg:'Please enter valid image url'
+            })
+        }
+        // to check the duplicate college 
+        const isduplicate=await CollegeModel.find({name:name})
+        if(isduplicate.length!=0){
+            return res.status(400).send({
+                status:false,
+                msg:`${name} is already exist`
+            })
+        }
         // validation ends
 
         // to create new college 
@@ -74,15 +89,10 @@ const getCollegeDetails=async function(req,res){
                 msg:'Please enter the college name in query'
             })
         }
-        // to check the college name lowercase
-        if(!Validator.isValidCase(data.name)){
-            return res.status(400).send({
-               status:false,
-               msg: "Please enter college name in lowercase only "
-           })
-       }
+        // to update the college name in lowercase 
+        collegeName=Validator.isValidCase(data.collegeName)
         // to get the dtails of college
-        const collegedetails=await CollegeModel.findOne({name:data.name,isDeleted:false}).select({name:1,fullName:1,logoLink:1})
+        const collegedetails=await CollegeModel.findOne({name:collegeName,isDeleted:false}).select({name:1,fullName:1,logoLink:1})
         if(!collegedetails) {
             return res.status(400).send({
                 status:false,
@@ -97,7 +107,6 @@ const getCollegeDetails=async function(req,res){
                 msg:'No intern is presnt in the college'
             })
         }
-        
         const result={
             name:collegedetails.name,
             fullName:collegedetails.fullName,
